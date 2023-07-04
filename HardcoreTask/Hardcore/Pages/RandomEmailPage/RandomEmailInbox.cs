@@ -29,6 +29,7 @@ public class RandomEmailInbox
         while (!this._driver.FindElement(_emailInboxButtonSelector).Displayed)
         {
             _driver.Navigate().Refresh();
+            Thread.Sleep(TimeSpan.FromSeconds(5));
         }
     }
 

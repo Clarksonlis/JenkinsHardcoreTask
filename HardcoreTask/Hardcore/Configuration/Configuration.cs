@@ -10,7 +10,8 @@ namespace Hardcore.Tests.Configuration
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             _config = builder.Build();
         }
