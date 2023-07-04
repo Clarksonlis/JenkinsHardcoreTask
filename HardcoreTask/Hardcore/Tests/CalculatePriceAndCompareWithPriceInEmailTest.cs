@@ -76,7 +76,11 @@ public class HardcoreTests : BaseTestClass
     public void TakeScreenshot()
     {
         Screenshot screenshot = takesScreenshot.GetScreenshot();
-        string fileName = $"screenshot_{DateTime.Now:yyyyMMddHHmmss}.png";
-        screenshot.SaveAsFile(fileName, ScreenshotImageFormat.Png);
+        string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestScreenshot");
+        string fileName = $"Failure_{DateTime.Now:yyyyMMddHHmmss}.png";
+        string filePath = Path.Combine(directoryPath, fileName);
+
+        Directory.CreateDirectory(directoryPath);
+        screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Png);
     }
 }
