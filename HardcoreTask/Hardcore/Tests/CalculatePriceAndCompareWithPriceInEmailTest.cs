@@ -5,6 +5,7 @@ using Hardcore.Tests.Pages;
 namespace Hardcore.Tests.Tests;
 
 [TestFixture]
+[Category("SmokeTests")]
 public class HardcoreTests : BaseTestClass
 {
     private GoogleCloudStartPage googleCloudStartPage;
