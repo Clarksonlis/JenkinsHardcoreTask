@@ -9,7 +9,7 @@ public class GoogleCloudStartPage
     private ActionBot _actionBot;
     private string originalWindow;
 
-    // Определение элементов страницы
+    // Элементы страницы 
     private readonly By _searchButtonSelector = By.CssSelector(".devsite-search-form");
     private readonly By _searchFieldSelector = By.CssSelector("input[aria-label='Search']");
 
@@ -18,16 +18,22 @@ public class GoogleCloudStartPage
         this._driver = driver;
         this._actionBot = actionBot;
         this.originalWindow = _driver.CurrentWindowHandle;
-
     }
 
+
+    /// <summary>
+    /// Методы поиска страницы в Google Cloud Search:
+    /// 1.Переход на страницу Google Cloud Search
+    /// 2.Нажадие кнопни поиска
+    /// 3.Ввод поисковых данных и submit
+    /// всё вместе собрано в метод SearchPricingCalculator()
+    /// отдельный метод SwitchToCalculatortWindow() для переключения обратно на вкладку Калькулятора
+    /// </summary>
 
     public void OpenGoogleCloudPage()
     {
         _driver.Navigate().GoToUrl("https://cloud.google.com/");
     }
-
-    //Методы поиска страницы
 
     public void ClickSearchButton()
     {

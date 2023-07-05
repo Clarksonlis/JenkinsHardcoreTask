@@ -8,7 +8,7 @@ public class RandomEmailInbox
     private IWebDriver _driver;
     private ActionBot _actionBot;
 
-    // Определение элементов страницы
+    // Элементы страницы
     private readonly By _checkNewEmailButtonSelector = By.CssSelector("button.md.but.text.f24.egenbut:last-child");
     private readonly By _emailInboxButtonSelector = By.CssSelector("iframe[name = 'ifinbox']");
 
@@ -21,6 +21,10 @@ public class RandomEmailInbox
         this._driver = driver;
     }
 
+    /// <summary>
+    /// Метод открытия страницы входящих писем нового рандомного email
+    /// и обновление страницы до тех пор, пока не появится новое письмо, отправленное со страницы Калькулятора
+    /// </summary>
 
     public void OpenEmailInbox()
     {
@@ -32,6 +36,11 @@ public class RandomEmailInbox
             Thread.Sleep(TimeSpan.FromSeconds(5));
         }
     }
+
+
+    /// <summary>
+    /// Метод для сохранения итоговой стоимости из письма, для последующего сравнения
+    /// </summary>
 
     public string CheckTotalCostInEmail()
     {

@@ -7,7 +7,7 @@ public class ComputeEngineForm
 {
     private ActionBot _actionBot;
 
-    /// Определение элементов страницы
+    /// Элементы страницы
     // IFrames
     private readonly By _iframeParentSelector = By.XPath("//devsite-iframe/iframe");
     private readonly By _iframeChildSelector = By.Id("myFrame");
@@ -53,14 +53,20 @@ public class ComputeEngineForm
     }
 
 
-    //Методы выбора формы
+    /// <summary>
+    /// Методы выбора Compute Engine Form:
+    /// 1.Переключение на фрейм
+    /// 2.Нажатие кнопки Compute Engine
+    /// эти 2 метода собраны в 1 метод ChooseCalculatorForm()
+    /// </summary>
+
     public void SwitchToComputeEngineFrame()
     {
         this._actionBot.SwitchToFrame(_iframeParentSelector);
         this._actionBot.SwitchToFrame(_iframeChildSelector);
     }
 
-    public void ClickComputerEngineTab()
+    public void ClickComputeEngineTab()
     {
         this._actionBot.Click(_computeEngineButtonSelector);
     }
@@ -68,10 +74,13 @@ public class ComputeEngineForm
     public void ChooseCalculatorForm()
     {
         SwitchToComputeEngineFrame();
-        ClickComputerEngineTab();
+        ClickComputeEngineTab();
     }
 
-    //Методы заполнения формы
+    /// <summary>
+    /// Методы заполнения Compute Engine Form:
+    /// все методы собраны в отдельный метод FillForm()
+    /// </summary>
 
     public void FillNumberOfInstancesField()
     {

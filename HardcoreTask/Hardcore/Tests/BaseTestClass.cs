@@ -43,7 +43,6 @@ namespace Hardcore.Tests.Tests
         [TearDown]
         public virtual void TearDown()
         {
-            // Завершение работы WebDriver
             _driver.Quit();
         }
     }

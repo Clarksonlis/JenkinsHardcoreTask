@@ -20,7 +20,6 @@ public class HardcoreTests : BaseTestClass
     public override void Setup()
     {
         base.Setup();
-        // Инициализация WebDriver 
         googleCloudStartPage = new GoogleCloudStartPage(_driver, _actionBot);
         googleCloudSearchResultPage = new GoogleCloudSearchResultPage(_actionBot);
         computeEngineForm = new ComputeEngineForm(_actionBot);
@@ -36,8 +35,19 @@ public class HardcoreTests : BaseTestClass
         base.TearDown();
     }
 
+
+    /// <summary>
+    /// Тест для сравнения цены из страницы Калькулятора и входящяего письма на странице рандомного email:
+    /// 1. Открытие Google Cloud Search и переход на Google Cloud Platform Pricing Calculator
+    /// 2. Заполнение формы COMPUTE ENGINE
+    /// 3. Нажатие Add to Estimate и выбоп EMAIL ESTIMATE
+    /// 4. Открытие в новой вкладке сервиса для генерации временных email'ов https://yopmail.com/
+    /// 5. Копирование временного email и отправка письма на этот email
+    /// 6. Проверка, совпадает ли стоимость
+    /// </summary>
+
     [Test]
-    public void CalculatePriceAndCompareWithPriceInEmailTest()
+    public void CompareCalculatorVsEmailEstimatePriceTest()
     {
         try
         {
@@ -72,6 +82,10 @@ public class HardcoreTests : BaseTestClass
             throw new Exception("Exception with screenshot", ex);
         }
     }
+
+    /// <summary>
+    /// Метод для скриншота страницы и сохранения его в папку TestScreenshot
+    /// </summary>
 
     public void TakeScreenshot()
     {

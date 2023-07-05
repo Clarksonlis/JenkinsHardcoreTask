@@ -10,7 +10,7 @@ public class NewRandomEmailPage
     private DefaultWait<IWebDriver> _wait;
     private ActionBot _actionBot;
 
-    // Определение элементов страницы
+    // Элементы страницы
     private readonly By _copyRandomEmailButtonSelector = By.CssSelector("button[id='cprnd']");
     private readonly By _adsSelector = By.CssSelector(".adsbygoogle");
 
@@ -21,22 +21,26 @@ public class NewRandomEmailPage
         this._actionBot = actionBot;
     }
 
+    /// <summary>
+    /// Метод удаления рекламы на сайте (а именно всех элементов с селектором .adsbygoogle из DOM), т.к. она мешает нажатию кнопок
+    /// </summary>
 
     public void AvoidAdvertisement()
     {
         this._wait.Until(_driver => ((IJavaScriptExecutor)_driver).ExecuteScript("return document.readyState").Equals("complete"));
         this._wait.Until(_driver => _driver.FindElement(_adsSelector).Displayed);
 
-        // Находим все элементы рекламы с классом ".adsbygoogle"
         IReadOnlyCollection<IWebElement> adElements = _driver.FindElements(_adsSelector);
 
-        // Исполняем JavaScript-код для удаления каждого элемента из DOM
         foreach (IWebElement adElement in adElements)
         {
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].remove();", adElement);
         }
     }
 
+    /// <summary>
+    /// Метод копирования нового рандомного email, который включает в себя метод удаления рекламы AvoidAdvertisement()
+    /// </summary>
     public void CopyNewRandomEmail()
     {
         this._wait.Until(_driver => _driver.FindElement(_copyRandomEmailButtonSelector).Displayed);

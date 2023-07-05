@@ -11,7 +11,7 @@ public class EstimateForm
     private DefaultWait<IWebDriver> _wait;
     private ActionBot _actionBot;
 
-    // Определение элементов страницы
+    // Элементы страницы
     private readonly By _costElementInCalculatorSelector = By.CssSelector(".cpc-cart-total b");
     private readonly By _emailEstimateButtonSelector = By.CssSelector("button[title='Email Estimate']");
     private readonly By _emailFieldSelector = By.CssSelector("input[type='email']");
@@ -23,6 +23,11 @@ public class EstimateForm
         this._actionBot = actionBot;
     }
 
+    /// <summary>
+    /// Методы заполнения формы Email Estimate:
+    /// Метод нажатия кнопки EmailEstimate() выполняется отдельно
+    /// остальные методы собраны в отдельный метод SendCostOnNewEmail() для отправки письма на email
+    /// </summary>
 
     public void EmailEstimate()
     {
@@ -45,6 +50,10 @@ public class EstimateForm
         PasteNewEmail();
         SendEmail();
     }
+
+    /// <summary>
+    /// Метод для сохранения итоговой стоимости на странице Калькулятора, для последующего сравнения
+    /// </summary>
 
     public string CheckTotalCostInCalculator()
     {
